@@ -1,0 +1,14 @@
+<!-- ALINA ALMA · in WordPress als „Raw HTML“-Element einfügen (ersetzt den alten Code) -->
+<div style="width:100%;margin:0;padding:0">
+  <iframe id="alina-alma-frame" src="https://podmirseg.github.io/alina-alma/"
+          title="ALINA ALMA – Monitoring Bürgeralm"
+          style="display:block;width:100%;height:2800px;border:0;overflow:hidden"
+          loading="lazy" scrolling="no"></iframe>
+</div>
+<script>
+window.addEventListener('message',function(e){
+  if(e.origin!=='https://podmirseg.github.io')return;
+  var d=e.data;if(!d||d.type!=='alina-alma-height'||typeof d.h!=='number')return;
+  var f=document.getElementById('alina-alma-frame');if(f)f.style.height=Math.max(600,Math.min(20000,d.h))+'px';
+});
+</script>

@@ -258,5 +258,10 @@ document.getElementById('aa-method').textContent=`Methode: ${D.rows.length} Stun
 }).catch(e=>{document.getElementById('aa-stamp').textContent='Daten konnten nicht geladen werden.';console.error(e)});
 </script>
 </div>
+<script>
+{/* Höhe an die einbettende Seite (vfi-Website) melden */
+ if(window.parent!==window){let last=0;const send=()=>{const h=Math.ceil(document.body.getBoundingClientRect().height);if(Math.abs(h-last)>2){last=h;window.parent.postMessage({type:'alina-alma-height',h},'*')}};
+ new ResizeObserver(send).observe(document.body);window.addEventListener('load',send);setTimeout(send,1500)}}
+</script>
 </body>
 </html>
