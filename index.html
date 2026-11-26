@@ -28,17 +28,17 @@ html,body{margin:0;background:#FFFFFF}
 #alina-alma .aa-fig{position:relative;min-height:340px}#alina-alma .aa-fig>svg{position:absolute;inset:0;width:100%;height:100%}
 #alina-alma .aa-scroll{overflow-x:auto}
 /* Kopfband */
-#alina-alma .aa-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 35%,#E1DDEF 100%);color:#171234;padding-bottom:0}
-#alina-alma .aa-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid #A39ECE}
+#alina-alma .aa-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 18%,#E1DDEF 100%);color:#171234;padding-bottom:0;min-height:clamp(640px,58vw,1040px);display:flex}#alina-alma .aa-hero>.aa-wrap{width:100%;display:flex;flex-direction:column}#alina-alma .aa-hero .aa-hgrid{flex:1}
+#alina-alma .aa-top{display:flex;align-items:center;justify-content:center;padding:4px 0 0}
 #alina-alma .aa-top .aa-id{display:flex;align-items:center;gap:14px;font-size:14px;color:#3C347F}
-#alina-alma .aa-top img.aa-alma{height:56px;width:auto}#alina-alma .aa-top img.aa-vfi{height:58px;width:auto}
+#alina-alma .aa-top img.aa-alma{height:112px;width:auto}
 #alina-alma .aa-hgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:end}
 #alina-alma .aa-htext{padding:clamp(24px,4vw,48px) 0 clamp(24px,3vw,40px)}
 #alina-alma .aa-kick{font-size:15px;color:#7874B5;margin:0 0 10px}
 #alina-alma h1{font-size:clamp(32px,4.6vw,52px);line-height:1.05;font-weight:600;color:#171234}
 #alina-alma .aa-lede{font-size:clamp(17px,1.6vw,19px);max-width:36em;margin:16px 0 0;color:#3C3C3B}
 #alina-alma .aa-render{align-self:stretch;display:flex;align-items:flex-end;justify-content:center}
-#alina-alma .aa-render img{width:min(100%,560px);height:auto;mix-blend-mode:multiply;display:block;margin-bottom:-6px}
+#alina-alma .aa-render img{width:min(100%,820px);height:auto;mix-blend-mode:multiply;display:block;margin-bottom:-6px}
 #alina-alma .aa-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:#A39ECE;border:1px solid #A39ECE;margin-top:28px}
 #alina-alma .aa-kpi{background:rgba(255,255,255,.82);padding:12px 12px 10px}
 #alina-alma .aa-kpi .aa-l{font-size:13px;color:#3C347F;display:flex;align-items:center;gap:6px}#alina-alma .aa-kpi .aa-l i{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -79,12 +79,12 @@ html,body{margin:0;background:#FFFFFF}
 #alina-alma .aa-sheet .aa-k{font-size:12px;color:var(--mut);display:block}#alina-alma .aa-sheet .aa-logo{display:flex;align-items:center;justify-content:center;background:#FFFFFF}#alina-alma .aa-sheet .aa-logo img{height:64px;width:auto}
 #alina-alma .aa-method{font-size:14px;color:var(--mut);max-width:70em;margin:14px 0 0}
 @media(max-width:900px){#alina-alma .aa-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}#alina-alma .aa-finds{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-find:nth-child(3){padding-left:0;border-left:0}#alina-alma .aa-two{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-sheet{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-sheet>div{border-left:0;border-top:1px solid var(--rule)}#alina-alma .aa-sheet>div:first-child{grid-column:1/-1;border-top:0}#alina-alma .aa-read{grid-template-columns:repeat(3,minmax(0,1fr))}#alina-alma .aa-read .aa-when{grid-column:1/-1}}
-@media(max-width:600px){#alina-alma .aa-kpi:last-child{grid-column:1/-1}#alina-alma .aa-read{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-read em.aa-x{display:none}#alina-alma .aa-hgrid{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-render{order:-1;max-height:300px;overflow:hidden}#alina-alma .aa-render img{width:72%}#alina-alma .aa-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-finds{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-find+.aa-find{padding-left:0;border-left:0;border-top:1px solid var(--grid)}#alina-alma .aa-top img.aa-alma{height:42px}#alina-alma .aa-top img.aa-vfi{height:44px}#alina-alma .aa-top .aa-id span{display:none}#alina-alma #aa-chart{min-height:560px}#alina-alma table{font-size:13px}}
+@media(max-width:600px){#alina-alma .aa-kpi:last-child{grid-column:1/-1}#alina-alma .aa-read{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-read em.aa-x{display:none}#alina-alma .aa-hgrid{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-render{order:-1;max-height:300px;overflow:hidden}#alina-alma .aa-render img{width:72%}#alina-alma .aa-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-finds{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-find+.aa-find{padding-left:0;border-left:0;border-top:1px solid var(--grid)}#alina-alma .aa-top img.aa-alma{height:84px}#alina-alma .aa-top{padding-bottom:20px}#alina-alma .aa-hero{min-height:0}#alina-alma #aa-chart{min-height:560px}#alina-alma table{font-size:13px}}
 @media(prefers-reduced-motion:no-preference){#alina-alma .aa-kpi{animation:aa-up .5s ease both}#alina-alma .aa-kpi:nth-child(2){animation-delay:.05s}#alina-alma .aa-kpi:nth-child(3){animation-delay:.1s}#alina-alma .aa-kpi:nth-child(4){animation-delay:.15s}#alina-alma .aa-kpi:nth-child(5){animation-delay:.2s}@keyframes aa-up{from{opacity:0;transform:translateY(6px)}}}
 
 </style>
 <div id="alina-alma"><div class="aa-band aa-hero"><div class="aa-wrap">
-  <div class="aa-top"><div class="aa-id"><img class="aa-alma" src="assets/logo-alma.png" alt="ALMA"><span>ALINA · Bürgeralm, 1.500 m · Nursery ALINA NURSE 69</span></div><img class="aa-vfi" src="assets/logo-vfi.png" alt="vertical farm institute"></div>
+  <div class="aa-top"><img class="aa-alma" src="assets/logo-alma.png" alt="ALMA"></div>
   <div class="aa-hgrid">
     <div class="aa-htext">
       <p class="aa-kick" id="aa-kick">Monitoring seit Inbetriebnahme</p>
