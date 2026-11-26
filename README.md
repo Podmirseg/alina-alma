@@ -1,7 +1,7 @@
 # ALINA ALMA – Monitoring Bürgeralm
 
 Öffentliche Monitoring-Seite des vertical farm institute (vfi) für die ALINA auf der Bürgeralm (1.500 m).
-Auf der vfi-Website wird diese Seite unter `verticalfarminstitute.com/alinaalma/` per iframe eingebunden.
+Auf der vfi-Website wird diese Seite unter `verticalfarminstitute.com/alma/` per iframe eingebunden.
 
 ## Aufbau
 
