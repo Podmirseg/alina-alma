@@ -1,14 +1,33 @@
-<!-- ALINA ALMA · in WordPress als „Raw HTML“-Element einfügen (ersetzt den alten Code) -->
-<div style="width:100%;margin:0;padding:0">
-  <iframe id="alina-alma-frame" src="https://podmirseg.github.io/alina-alma/"
-          title="ALINA ALMA – Monitoring Bürgeralm"
-          style="display:block;width:100%;height:2800px;border:0;overflow:hidden"
-          loading="lazy" scrolling="no"></iframe>
+<div id="alina-alma-wrap" style="position:relative;width:100vw;left:50%;margin-left:-50vw;padding:0">
+  <iframe id="alina-alma-frame" src="https://podmirseg.github.io/alina-alma/" title="ALINA ALMA – Monitoring Bürgeralm"
+          style="display:block;width:100%;height:2800px;border:0;overflow:hidden" scrolling="no"></iframe>
 </div>
 <script>
-window.addEventListener('message',function(e){
-  if(e.origin!=='https://podmirseg.github.io')return;
-  var d=e.data;if(!d||d.type!=='alina-alma-height'||typeof d.h!=='number')return;
-  var f=document.getElementById('alina-alma-frame');if(f)f.style.height=Math.max(600,Math.min(20000,d.h))+'px';
-});
+(function(){
+  var IMG='https://podmirseg.github.io/alina-alma/assets/header-basilikum.jpg';
+  var wrap=document.getElementById('alina-alma-wrap'),frame=document.getElementById('alina-alma-frame');
+  window.addEventListener('message',function(e){
+    if(e.origin!=='https://podmirseg.github.io')return;
+    var d=e.data;if(!d||d.type!=='alina-alma-height'||typeof d.h!=='number')return;
+    frame.style.height=Math.max(600,Math.min(20000,d.h))+'px';
+  });
+  function hasBg(el){var b=getComputedStyle(el).backgroundImage;return b&&b!=='none'&&b.indexOf('url(')>-1;}
+  function fix(){
+    var h=[].slice.call(document.querySelectorAll('h1,h2')).filter(function(x){return !wrap.contains(x)&&/ALINA\s*ALMA/i.test(x.textContent);})[0];
+    if(!h)return;
+    h.style.color='#FFFFFF';
+    var box=h,banner=null;
+    for(var i=0;i<8&&box&&box!==document.body;i++,box=box.parentElement){
+      if(hasBg(box)){banner=box;break;}
+      var kids=box.querySelectorAll('*');
+      for(var k=0;k<kids.length;k++){if(!wrap.contains(kids[k])&&kids[k]!==frame&&hasBg(kids[k])){banner=kids[k];break;}}
+      if(banner)break;
+    }
+    if(banner){banner.style.backgroundImage='url("'+IMG+'")';banner.style.backgroundSize='cover';banner.style.backgroundPosition='center 40%';
+      var gap=wrap.getBoundingClientRect().top-banner.getBoundingClientRect().bottom;
+      if(gap>0&&gap<400)wrap.style.marginTop=(-gap)+'px';}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();
+  window.addEventListener('load',fix);
+})();
 </script>
