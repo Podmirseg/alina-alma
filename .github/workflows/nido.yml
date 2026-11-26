@@ -1,0 +1,38 @@
+name: NIDO-Daten aktualisieren
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # stündlich (UTC), Minute 17
+  workflow_dispatch: {}     # Knopf „Run workflow“ für einen Abruf von Hand
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nido-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Messwerte holen
+        env:
+          NIDO_API_KEY: ${{ secrets.NIDO_API_KEY }}
+          NIDO_DEVICE_ID: _d_0281705ffc30
+        run: python3 scripts/update_data.py
+
+      - name: Änderungen speichern
+        run: |
+          if git diff --quiet -- data/data.json; then
+            echo "Keine neuen Daten."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/data.json
+          git commit -m "Daten aktualisiert ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push

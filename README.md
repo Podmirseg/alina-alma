@@ -15,9 +15,19 @@ Auf der vfi-Website wird diese Seite unter `verticalfarminstitute.com/alinaalma/
 Die Seite lädt `data/data.json` beim Öffnen. Neue Messdaten bedeuten also: nur diese Datei ersetzen.
 Layout und Daten sind getrennt und lassen sich unabhängig voneinander ändern.
 
+## Automatischer Datenabruf
+
+`.github/workflows/nido.yml` startet jede Stunde (Minute 17, UTC) `scripts/update_data.py`.
+Das Skript holt die neuen Messpunkte aus der NIDO REST API
+(`GET https://api.nidopro.com/rest/v1/devices/<Geräte-ID>/data`, Header `x-api-key`),
+mittelt sie zu Stundenwerten und berechnet EC-Sprünge, Datenlücken, Tagesprofil und Kälteeinbrüche neu.
+Ändert sich etwas, speichert der Workflow `data/data.json` im Repository.
+
+Voraussetzung: Secret `NIDO_API_KEY` unter *Settings → Secrets and variables → Actions*.
+Von Hand starten: *Actions → NIDO-Daten aktualisieren → Run workflow*.
+
 ## Geplant
 
-- automatischer stündlicher Abruf der NIDO-Daten (GitHub Actions, API-Schlüssel als Secret `NIDO_API_KEY`)
 - Webcam-Standbild (`assets/cam.jpg`)
 - Überarbeitung von Design und Animationen
 
