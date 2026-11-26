@@ -6,7 +6,7 @@
    - Titelband des Themes: Basilikum-Foto, Titel weiß (unabhängig vom Titeltext) */
 (function () {
   var BASE = 'https://podmirseg.github.io/alina-alma/';
-  var IMG = BASE + 'assets/header-basilikum.jpg';
+  var IMG = BASE + 'assets/header-basilikum-gross.jpg';
   var wrap = document.getElementById('alina-alma-wrap');
   var frame = document.getElementById('alina-alma-frame');
   if (!wrap || !frame) return;
@@ -79,7 +79,7 @@
     if (!banner) return;
     banner.style.setProperty('background-image', 'url("' + IMG + '")', 'important');
     banner.style.setProperty('background-size', 'cover', 'important');
-    banner.style.setProperty('background-position', 'center 40%', 'important');
+    banner.style.setProperty('background-position', 'center 35%', 'important');
     /* Titel weiß: nächster Vorfahr, der einen Titel enthält */
     var scope = section || banner;
     while (scope && scope !== document.body && !scope.querySelector('h1, h2, .grve-title')) scope = scope.parentElement;
