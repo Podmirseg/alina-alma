@@ -1,4 +1,5 @@
 /* ALINA ALMA · Einbettung in die vfi-Website (WordPress)
+   Titelband wie Journal: Menüleiste über dem Bild, 60 % Bildschirmhöhe, dunkler Verlauf
    Wird vom Raw-HTML-Element geladen. Änderungen hier wirken ohne WordPress-Schritt.
    - iframe-Höhe nach Inhalt
    - Seite bildschirmbreit, Lücke zum Titelband schließen
@@ -41,9 +42,38 @@
     return best;
   }
 
+  /* Aussehen wie die Journal-Seite: Menüleiste über dem Bild, Band 60 % Bildschirmhöhe */
+  function journalLook(section) {
+    document.body.classList.add('grve-header-overlapping');
+    var mh = document.getElementById('grve-main-header');
+    if (mh) {
+      mh.classList.remove('grve-skin-default', 'grve-skin-dark');
+      mh.classList.add('grve-skin-light');
+      mh.setAttribute('data-header-skin', 'light');
+    }
+    if (!section) return;
+    section.classList.add('grve-with-image', 'grve-custom-size');
+    section.setAttribute('data-height', '60');
+    var w = section.querySelector('.grve-wrapper');
+    if (w) { w.style.setProperty('height', '60vh', 'important'); w.style.setProperty('min-height', '200px', 'important'); }
+    var bw = section.querySelector('.grve-background-wrapper');
+    if (bw && !bw.querySelector('.grve-bg-overlay')) {
+      var ov = document.createElement('div');
+      ov.className = 'grve-bg-overlay';
+      bw.appendChild(ov);
+    }
+    var o = section.querySelector('.grve-bg-overlay');
+    if (o) o.style.setProperty('background', 'linear-gradient(180deg,rgba(10,10,10,0.55) 0%,rgba(0,0,0,0.10) 100%)', 'important');
+    var t = section.querySelectorAll('.grve-title, .grve-description');
+    for (var i = 0; i < t.length; i++) { t[i].classList.remove('grve-text-dark', 'grve-text-black'); t[i].classList.add('grve-text-white'); }
+  }
+
+  var resized = false;
   function fix() {
     /* Impeka: Titelband = #grve-feature-section mit .grve-bg-image; sonst geometrisch suchen */
     var section = document.getElementById('grve-feature-section');
+    journalLook(section);
+    if (!resized) { resized = true; window.dispatchEvent(new Event('resize')); }
     var banner = section && section.querySelector('.grve-bg-image');
     if (!banner) banner = findBanner();
     if (!banner) return;
