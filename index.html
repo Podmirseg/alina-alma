@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALINA ALMA – Monitoring Bürgeralm · vertical farm institute</title>
+<link rel="icon" href="assets/logo-vfi.png">
+</head>
+<body>
+<style>
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/source-sans-3-400.woff2) format('woff2')}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/source-sans-3-600.woff2) format('woff2')}
+html,body{margin:0;background:#FFFFFF}
+#alina-alma{display:block;width:100%;text-align:left}#alina-alma,#alina-alma *{font-family:"Source Sans 3",system-ui,sans-serif;letter-spacing:normal;text-transform:none;text-shadow:none;box-shadow:none}#alina-alma h1,#alina-alma h2,#alina-alma h3,#alina-alma p{margin:0;padding:0;line-height:inherit;color:inherit;border:0;background:none}#alina-alma table,#alina-alma thead,#alina-alma tbody,#alina-alma tr,#alina-alma th,#alina-alma td{background:transparent;border:0;margin:0;color:inherit;font-size:inherit}#alina-alma button{border-radius:0;min-width:0;line-height:normal;height:auto;margin:0;transform:none}#alina-alma img{max-width:none;border:0;border-radius:0;box-shadow:none}#alina-alma .aa-render img{max-width:100%}
+
+/* VOICE: präzise, ruhig, architektonisch – ein Messprotokoll, kein Werbeblatt
+   IDEA: Planblatt eines Architekten – Ansicht oben, Schnitt durch die Zeit, Schriftfeld unten
+   PICTURE: das ALINA-Regal im Lavendel-Licht neben den aktuellen Messwerten; darunter der 4-fach-Schnitt
+   COLOUR and TYPE: vfi-Palette 2026 (Blau-Lavendel führt, Magenta/Gelbgrün als Kategorien, Orange nur für Ereignisse); Source Sans 3
+   LAYOUT: Kopfband hell, Zeitachse vollbreit, Befunde in Spalten, Schriftfeld als Raster */
+#alina-alma{color-scheme:light;
+--bg:#FFFFFF;--ink:#3C3C3B;--mut:#878787;--grid:#DADADA;--rule:#3C3C3B;--soft:#F6F5FA;
+--c-ph:#BC2B7D;--c-ec:#938F1F;--c-at:#3C347F;--c-atb:#A39ECE;--c-wt:#EC3293;--c-rh:#7874B5;--c-rhb:#E1DDEF;--ok:#DEDC00;--acc:#DDB301;--red:#F40018}
+#alina-alma *{box-sizing:border-box;min-width:0}
+#alina-alma{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Source Sans 3",system-ui,sans-serif;overflow-x:clip}
+#alina-alma .aa-band{padding:clamp(28px,4vw,56px) max(5vw,16px)}#alina-alma .aa-wrap{max-width:1240px;margin:0 auto}
+#alina-alma h1,#alina-alma h2,#alina-alma h3{font-weight:600;margin:0;text-wrap:balance}#alina-alma h2{font-size:clamp(24px,3vw,32px);line-height:1.1}
+#alina-alma .aa-fig{position:relative;min-height:340px}#alina-alma .aa-fig>svg{position:absolute;inset:0;width:100%;height:100%}
+#alina-alma .aa-scroll{overflow-x:auto}
+/* Kopfband */
+#alina-alma .aa-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 35%,#E1DDEF 100%);color:#171234;padding-bottom:0}
+#alina-alma .aa-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid #A39ECE}
+#alina-alma .aa-top .aa-id{display:flex;align-items:center;gap:14px;font-size:14px;color:#3C347F}
+#alina-alma .aa-top img.aa-alma{height:56px;width:auto}#alina-alma .aa-top img.aa-vfi{height:58px;width:auto}
+#alina-alma .aa-hgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:end}
+#alina-alma .aa-htext{padding:clamp(24px,4vw,48px) 0 clamp(24px,3vw,40px)}
+#alina-alma .aa-kick{font-size:15px;color:#7874B5;margin:0 0 10px}
+#alina-alma h1{font-size:clamp(32px,4.6vw,52px);line-height:1.05;font-weight:600;color:#171234}
+#alina-alma .aa-lede{font-size:clamp(17px,1.6vw,19px);max-width:36em;margin:16px 0 0;color:#3C3C3B}
+#alina-alma .aa-render{align-self:stretch;display:flex;align-items:flex-end;justify-content:center}
+#alina-alma .aa-render img{width:min(100%,560px);height:auto;mix-blend-mode:multiply;display:block;margin-bottom:-6px}
+#alina-alma .aa-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:#A39ECE;border:1px solid #A39ECE;margin-top:28px}
+#alina-alma .aa-kpi{background:rgba(255,255,255,.82);padding:12px 12px 10px}
+#alina-alma .aa-kpi .aa-l{font-size:13px;color:#3C347F;display:flex;align-items:center;gap:6px}#alina-alma .aa-kpi .aa-l i{width:9px;height:9px;border-radius:50%;display:inline-block}
+#alina-alma .aa-kpi .aa-v{font-size:clamp(24px,2.6vw,32px);font-weight:600;line-height:1.1;white-space:nowrap;color:#171234}#alina-alma .aa-kpi .aa-v small{font-size:14px;font-weight:400;color:#7874B5;margin-left:3px}
+#alina-alma .aa-kpi .aa-r{font-size:13px;color:#3C3C3B;white-space:nowrap}#alina-alma .aa-kpi svg{width:100%;height:22px;display:block;margin-top:4px}
+#alina-alma .aa-stamp{font-size:13px;color:#3C347F;margin:10px 0 0}
+/* Zeitschnitt */
+#alina-alma .aa-bar{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;margin:18px 0 8px}
+#alina-alma .aa-seg{display:flex;border:1px solid var(--rule)}#alina-alma .aa-seg button{font:inherit;font-size:15px;min-height:44px;padding:0 16px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+#alina-alma .aa-seg button+button{border-left:1px solid var(--rule)}#alina-alma .aa-seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+#alina-alma .aa-seg button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+#alina-alma .aa-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--mut)}#alina-alma .aa-legend span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+#alina-alma .aa-legend b{display:inline-block;width:18px;height:3px}#alina-alma .aa-legend b.aa-box{height:10px;opacity:.6}
+#alina-alma .aa-read{display:grid;grid-template-columns:auto repeat(5,minmax(0,1fr));gap:4px 18px;font-size:15px;border-top:2px solid var(--rule);border-bottom:1px solid var(--grid);padding:8px 0;min-height:44px;align-items:baseline}
+#alina-alma .aa-read .aa-when{font-weight:600;white-space:nowrap}#alina-alma .aa-read span{white-space:nowrap}#alina-alma .aa-read em{font-style:normal;color:var(--mut);font-size:13px;margin-right:4px}
+#alina-alma #aa-chart{min-height:640px;touch-action:pan-y}
+#alina-alma svg text{font-family:"Source Sans 3",system-ui,sans-serif;fill:var(--mut);font-size:12px}
+#alina-alma svg .aa-pl{fill:var(--ink);font-size:13px;font-weight:600;paint-order:stroke;stroke:var(--bg);stroke-width:5px;stroke-linejoin:round}
+#alina-alma .aa-g{stroke:var(--grid);stroke-width:1}#alina-alma .aa-ax{stroke:var(--rule);stroke-width:1}
+#alina-alma .aa-l{fill:none;stroke-width:1.6;stroke-linejoin:round}#alina-alma .aa-l-ph{stroke:var(--c-ph)}#alina-alma .aa-l-ec{stroke:var(--c-ec)}#alina-alma .aa-l-at{stroke:var(--c-at)}#alina-alma .aa-l-wt{stroke:var(--c-wt)}#alina-alma .aa-l-rh{stroke:var(--c-rh)}
+#alina-alma .aa-b-at{fill:var(--c-atb);opacity:.45}#alina-alma .aa-b-rh{fill:var(--c-rhb);opacity:.9}#alina-alma .aa-okb{fill:var(--ok);opacity:.22}
+#alina-alma .aa-ev{stroke:var(--acc);stroke-width:1.2;stroke-dasharray:3 3}#alina-alma .aa-evm{fill:var(--acc)}#alina-alma .aa-gap{fill:var(--grid);opacity:.35}
+#alina-alma .aa-cross{stroke:var(--ink);stroke-width:1}#alina-alma .aa-dot{stroke:var(--bg);stroke-width:1.5}
+/* Befunde */
+#alina-alma .aa-finds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:2px solid var(--rule);margin-top:22px}
+#alina-alma .aa-find{padding:18px 20px 6px 0}#alina-alma .aa-find+.aa-find{padding-left:20px;border-left:1px solid var(--grid)}
+#alina-alma .aa-find .aa-n{font-size:clamp(30px,3.4vw,42px);font-weight:600;line-height:1;white-space:nowrap}#alina-alma .aa-find .aa-n small{font-size:16px;font-weight:400;color:var(--mut);margin-left:4px}
+#alina-alma .aa-find h3{font-size:17px;margin:10px 0 6px}#alina-alma .aa-find p{margin:0;font-size:15px;color:var(--ink)}#alina-alma .aa-find p .aa-m{color:var(--mut)}
+#alina-alma .aa-two{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);margin-top:36px}
+#alina-alma #aa-prof{min-height:300px}
+#alina-alma .aa-cap{font-size:14px;color:var(--mut);margin:6px 0 0}
+#alina-alma table{border-collapse:collapse;width:100%;font-size:15px}#alina-alma th{font-weight:600;text-align:left;border-bottom:2px solid var(--rule);padding:6px 8px 6px 0}
+#alina-alma td{border-bottom:1px solid var(--grid);padding:7px 8px 7px 0;vertical-align:top}#alina-alma td.aa-num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}#alina-alma td.aa-t{white-space:nowrap}
+#alina-alma .aa-tag{display:inline-block;width:8px;height:8px;margin-right:6px;vertical-align:1px}
+/* Schriftfeld */
+#alina-alma .aa-sheet{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr)) auto;border:2px solid var(--rule);margin-top:8px}
+#alina-alma .aa-sheet>div{padding:10px 14px;border-left:1px solid var(--rule);font-size:14px}#alina-alma .aa-sheet>div:first-child{border-left:0}
+#alina-alma .aa-sheet .aa-k{font-size:12px;color:var(--mut);display:block}#alina-alma .aa-sheet .aa-logo{display:flex;align-items:center;justify-content:center;background:#FFFFFF}#alina-alma .aa-sheet .aa-logo img{height:64px;width:auto}
+#alina-alma .aa-method{font-size:14px;color:var(--mut);max-width:70em;margin:14px 0 0}
+@media(max-width:900px){#alina-alma .aa-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}#alina-alma .aa-finds{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-find:nth-child(3){padding-left:0;border-left:0}#alina-alma .aa-two{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-sheet{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-sheet>div{border-left:0;border-top:1px solid var(--rule)}#alina-alma .aa-sheet>div:first-child{grid-column:1/-1;border-top:0}#alina-alma .aa-read{grid-template-columns:repeat(3,minmax(0,1fr))}#alina-alma .aa-read .aa-when{grid-column:1/-1}}
+@media(max-width:600px){#alina-alma .aa-kpi:last-child{grid-column:1/-1}#alina-alma .aa-read{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-read em.aa-x{display:none}#alina-alma .aa-hgrid{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-render{order:-1;max-height:300px;overflow:hidden}#alina-alma .aa-render img{width:72%}#alina-alma .aa-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#alina-alma .aa-finds{grid-template-columns:minmax(0,1fr)}#alina-alma .aa-find+.aa-find{padding-left:0;border-left:0;border-top:1px solid var(--grid)}#alina-alma .aa-top img.aa-alma{height:42px}#alina-alma .aa-top img.aa-vfi{height:44px}#alina-alma .aa-top .aa-id span{display:none}#alina-alma #aa-chart{min-height:560px}#alina-alma table{font-size:13px}}
+@media(prefers-reduced-motion:no-preference){#alina-alma .aa-kpi{animation:aa-up .5s ease both}#alina-alma .aa-kpi:nth-child(2){animation-delay:.05s}#alina-alma .aa-kpi:nth-child(3){animation-delay:.1s}#alina-alma .aa-kpi:nth-child(4){animation-delay:.15s}#alina-alma .aa-kpi:nth-child(5){animation-delay:.2s}@keyframes aa-up{from{opacity:0;transform:translateY(6px)}}}
+
+</style>
+<div id="alina-alma"><div class="aa-band aa-hero"><div class="aa-wrap">
+  <div class="aa-top"><div class="aa-id"><img class="aa-alma" src="assets/logo-alma.png" alt="ALMA"><span>ALINA · Bürgeralm, 1.500 m · Nursery ALINA NURSE 69</span></div><img class="aa-vfi" src="assets/logo-vfi.png" alt="vertical farm institute"></div>
+  <div class="aa-hgrid">
+    <div class="aa-htext">
+      <p class="aa-kick" id="aa-kick">Monitoring seit Inbetriebnahme</p>
+      <h1>Die Nährlösung läuft stabil, die Luft schwankt stark.</h1>
+      <p class="aa-lede">Der pH lag seit dem Ende der Befüllung zu jeder Stunde im Zielbereich 5,5–6,5. Die Raumluft wird dagegen kälter: Beim Lüften stürzt sie regelmäßig ab, zuletzt bis auf <b id="aa-minAir"></b>.</p>
+      <div class="aa-kpis" id="aa-kpis"></div>
+      <p class="aa-stamp" id="aa-stamp"></p>
+    </div>
+    <div class="aa-render"><img src="assets/alina-regal.jpg" alt="ALINA – Regal mit NFT-Rinnen und Nursery"></div>
+  </div>
+</div></div>
+
+<div class="aa-band"><div class="aa-wrap">
+  <h2>Der Zeitschnitt: alle Parameter, Stunde für Stunde</h2>
+  <div class="aa-bar">
+    <div class="aa-seg" role="group" aria-label="Zeitraum" id="aa-seg">
+      <button data-h="0" aria-pressed="true">Seit Start</button><button data-h="336" aria-pressed="false">14 Tage</button><button data-h="168" aria-pressed="false">7 Tage</button><button data-h="48" aria-pressed="false">48 h</button>
+    </div>
+    <div class="aa-legend">
+      <span><b class="aa-box" style="background:var(--ok)"></b>pH-Zielbereich</span>
+      <span><b class="aa-box" style="background:var(--c-atb)"></b>Luft min–max</span>
+      <span><b style="background:var(--c-wt)"></b>Wasser</span>
+      <span><b style="background:var(--acc)"></b>EC-Sprung (vermutl. Nachfüllen)</span>
+      <span><b class="aa-box" style="background:var(--grid)"></b>keine Daten</span>
+    </div>
+  </div>
+  <div class="aa-read" id="aa-read" aria-live="polite"></div>
+  <div class="aa-fig" id="aa-chart"><svg id="aa-cs" role="img" aria-label="Zeitverlauf von pH, EC, Temperatur und Luftfeuchte"></svg></div>
+
+  <div class="aa-finds" id="aa-finds"></div>
+
+  <div class="aa-two">
+    <div>
+      <h2>Wann es kalt wird</h2>
+      <p class="aa-cap">Lufttemperatur nach Tageszeit seit 22.10.: Linie = Mittelwert, Punkte = tiefster Stundenwert. Die Einbrüche häufen sich morgens um 7–8 Uhr und am späten Nachmittag bis in die Nacht.</p>
+      <div class="aa-fig" id="aa-prof"><svg id="aa-ps" role="img" aria-label="Tagesprofil der Lufttemperatur"></svg></div>
+    </div>
+    <div>
+      <h2>Ereignisse</h2>
+      <p class="aa-cap">Aus den Messdaten abgeleitet. EC-Sprung: EC fällt um mindestens 0,08 mS/cm in einer Stunde, während der pH steigt.</p>
+      <div class="aa-scroll"><table><thead><tr><th>Zeitpunkt</th><th>Ereignis</th><th style="text-align:right">Detail</th></tr></thead><tbody id="aa-evt"></tbody></table></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="aa-band" style="padding-top:0"><div class="aa-wrap">
+  <div class="aa-sheet">
+    <div><span class="aa-k">Projekt</span><b>ALINA ALMA</b> – Monitoring Fertigation &amp; Klima</div>
+    <div><span class="aa-k">Standort</span>Bürgeralm, 1.500 m</div>
+    <div><span class="aa-k">Datenquelle</span>NIDO REST API v1, Gerät ALINA</div>
+    <div><span class="aa-k">Stand</span><span id="aa-st2"></span></div>
+    <div class="aa-logo"><img src="assets/logo-vfi.png" alt="vfi"></div>
+  </div>
+  <p class="aa-method" id="aa-method"></p>
+</div></div>
+
+<script>
+fetch('data/data.json?v='+Date.now()).then(r=>r.json()).then(D=>{
+const T0=Date.parse(D.t0),H=36e5;
+const nf=(v,d)=>v==null?'–':v.toLocaleString('de-AT',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtT=(i,o)=>new Date(T0+i*H).toLocaleString('de-AT',Object.assign({timeZone:'Europe/Vienna'},o));
+const rows=D.rows.map(r=>({i:r[0],ph:r[1],ec:r[2],wt:r[3],at:r[4],atn:r[5],atx:r[6],rh:r[7],rhn:r[8],rhx:r[9]}));
+const byI=new Map(rows.map(r=>[r.i,r]));
+const last=rows[rows.length-1],I1=last.i,OP=72;
+const op=rows.filter(r=>r.i>=OP);
+const mm=(k)=>{const v=op.map(r=>r[k]).filter(x=>x!=null);return[Math.min(...v),Math.max(...v)]};
+const lastOf=k=>{for(let j=rows.length-1;j>=0;j--)if(rows[j][k]!=null)return rows[j][k]};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const minAir=Math.min(...op.map(r=>r.atn).filter(x=>x!=null));
+document.getElementById('aa-minAir').textContent=nf(minAir,1)+' °C';
+const stamp=fmtT(I1,{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+document.getElementById('aa-stamp').textContent='Letzter Stundenwert: '+stamp+' · Spannweite seit 22.10. (nach Befüllung)';
+document.getElementById('aa-st2').textContent=stamp;
+document.getElementById('aa-kick').textContent='Monitoring seit Inbetriebnahme · '+fmtT(0,{day:'2-digit',month:'2-digit'})+'–'+fmtT(I1,{day:'2-digit',month:'2-digit',year:'numeric'});
+
+/* KPI-Kacheln mit Tagesmittel-Sparkline */
+const days={};op.forEach(r=>{const d=Math.floor((r.i+12)/24);(days[d]=days[d]||[]).push(r)});
+const dk=Object.keys(days).map(Number).sort((a,b)=>a-b);
+const dmean=k=>dk.map(d=>{const v=days[d].map(r=>r[k]).filter(x=>x!=null);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null});
+const spark=(arr,col)=>{const v=arr.filter(x=>x!=null),lo=Math.min(...v),hi=Math.max(...v),w=100,h=22;
+ const p=arr.map((x,j)=>x==null?null:[(j/(arr.length-1))*w,h-2-((x-lo)/((hi-lo)||1))*(h-4)]).filter(Boolean);
+ return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline points="${p.map(q=>q.map(n=>n.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="${col}" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>`};
+const K=[['ph','pH','',2,'#BC2B7D'],['ec','EC','mS/cm',2,'#938F1F'],['at','Luft','°C',1,'#3C347F'],['wt','Wasser','°C',1,'#EC3293'],['rh','Luftfeuchte','%',0,'#7874B5']];
+document.getElementById('aa-kpis').innerHTML=K.map(([k,l,u,d,c])=>{const[a,b]=k==='at'?[minAir,mm('atx')[1]]:mm(k);
+ return `<div class="aa-kpi"><div class="aa-l"><i style="background:${c}"></i>${l}</div><div class="aa-v">${nf(lastOf(k),d)}<small>${u}</small></div><div class="aa-r">${nf(a,d)} – ${nf(b,d)}</div>${spark(dmean(k),c)}</div>`}).join('');
+
+/* Zeitschnitt */
+const P=[
+ {t:'pH',dom:[5,7],tk:[5,5.5,6,6.5,7],d:1,h:1},
+ {t:'EC  mS/cm',dom:[0.9,1.8],tk:[1,1.2,1.4,1.6,1.8],d:1,h:.9},
+ {t:'Temperatur  °C',dom:[0,27],tk:[0,5,10,15,20,25],d:0,h:1.35},
+ {t:'Luftfeuchte  %',dom:[30,95],tk:[40,60,80],d:0,h:1}];
+const s=document.getElementById('aa-cs'),fig=document.getElementById('aa-chart'),rd=document.getElementById('aa-read');
+let span=0,geo=null;
+const path=(sel,k,x,y)=>{let d='',pen=false,prev=-9;for(const r of sel){const v=r[k];if(v==null||r.i-prev>1){pen=false}if(v!=null){d+=(pen?'L':'M')+x(r.i).toFixed(1)+','+y(v).toFixed(1);pen=true}prev=r.i}return d};
+const area=(sel,lo,hi,x,y)=>{let out='',seg=[],prev=-9;const flush=()=>{if(seg.length>1)out+='M'+seg.map(r=>x(r.i).toFixed(1)+','+y(r[hi]).toFixed(1)).join('L')+'L'+seg.slice().reverse().map(r=>x(r.i).toFixed(1)+','+y(r[lo]).toFixed(1)).join('L')+'Z';seg=[]};
+ for(const r of sel){if(r[lo]==null||r.i-prev>1)flush();if(r[lo]!=null)seg.push(r);prev=r.i}flush();return out};
+function draw(){
+ const W=fig.clientWidth,Hh=fig.clientHeight,narrow=W<520;
+ const L=narrow?34:46,R=8,top=8,bot=26,gapP=14;
+ const i0=span?I1-span:0,sel=rows.filter(r=>r.i>=i0);
+ const x=i=>L+(i-i0)/(I1-i0)*(W-L-R);
+ const tot=P.reduce((a,p)=>a+p.h,0),avail=Hh-top-bot-gapP*(P.length-1);
+ let yy=top,g='';
+ // Zeitraster
+ const step=span&&span<=48?6:span&&span<=168?24:span?48:168;
+ const ticks=[];for(let i=Math.ceil((i0+12)/step)*step-12;i<=I1;i+=step)ticks.push(i);
+ const dayl=[];for(let i=Math.ceil((i0+12)/24)*24-12;i<=I1;i+=24)dayl.push(i);
+ P.forEach((p,pi)=>{const ph=avail*p.h/tot,yt=yy,yb=yy+ph,y=v=>yb-(Math.max(p.dom[0],Math.min(p.dom[1],v))-p.dom[0])/(p.dom[1]-p.dom[0])*ph;p.y=y;p.yt=yt;p.yb=yb;
+  dayl.forEach(i=>g+=`<line class="aa-g" x1="${x(i)}" x2="${x(i)}" y1="${yt}" y2="${yb}" opacity=".45"/>`);
+  D.gaps.forEach(q=>{if(q.b>=i0){const a=Math.max(q.a,i0);g+=`<rect class="aa-gap" x="${x(a-.5)}" y="${yt}" width="${Math.max(2,x(q.b+.5)-x(a-.5))}" height="${ph}"/>`}});
+  if(i0<OP)g+=`<rect x="${x(i0)}" y="${yt}" width="${x(OP)-x(i0)}" height="${ph}" fill="url(#aa-hatch)"/>`;
+  p.tk.forEach(v=>g+=`<line class="aa-g" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/>`+(narrow&&v!==p.tk[0]&&v!==p.tk[p.tk.length-1]?'':`<text x="${L-6}" y="${y(v)+4}" text-anchor="end">${nf(v,p.d)}</text>`));
+  if(pi===0)g+=`<rect class="aa-okb" x="${L}" width="${W-L-R}" y="${y(6.5)}" height="${y(5.5)-y(6.5)}"/>`;
+  if(pi===0)g+=`<path class="aa-l aa-l-ph" d="${path(sel,'ph',x,y)}"/>`;
+  if(pi===1){g+=`<path class="aa-l aa-l-ec" d="${path(sel,'ec',x,y)}"/>`;D.ev.forEach(e=>{if(e.i>=i0)g+=`<path class="aa-evm" d="M${x(e.i)-5},${yt} h10 l-5,7z"/>`})}
+  if(pi===2)g+=`<path class="aa-b-at" d="${area(sel,'atn','atx',x,y)}"/><path class="aa-l aa-l-at" d="${path(sel,'at',x,y)}"/><path class="aa-l aa-l-wt" d="${path(sel,'wt',x,y)}"/>`;
+  if(pi===3)g+=`<path class="aa-b-rh" d="${area(sel,'rhn','rhx',x,y)}"/><path class="aa-l aa-l-rh" d="${path(sel,'rh',x,y)}"/>`;
+  g+=`<line class="aa-ax" x1="${L}" x2="${W-R}" y1="${yb}" y2="${yb}"/><text class="aa-pl" x="${L+6}" y="${yt+14}">${p.t}</text>`;
+  yy=yb+gapP});
+ D.ev.forEach(e=>{if(e.i>=i0)g+=`<line class="aa-ev" x1="${x(e.i)}" x2="${x(e.i)}" y1="${P[0].yt}" y2="${P[3].yb}"/>`});
+ if(i0<OP&&!narrow)g+=`<text x="${(x(i0)+x(OP))/2}" y="${P[3].yb-6}" text-anchor="middle">Inbetriebnahme</text>`;
+ ticks.forEach(i=>g+=`<text x="${x(i)}" y="${Hh-8}" text-anchor="middle">${fmtT(i,step<24?{day:'2-digit',month:'2-digit',hour:'2-digit'}:{day:'2-digit',month:'2-digit'})}</text>`);
+ s.innerHTML=`<defs><pattern id="aa-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--grid)" stroke-width="2"/></pattern></defs>${g}<g id="aa-hov"></g>`;
+ geo={x,i0,L,R,W};show(null);
+}
+function show(i){
+ const hv=document.getElementById('aa-hov'),hover=i!=null;let r=hover?byI.get(i):last;if(!hover)i=I1;
+ if(hv&&geo&&r&&hover){const X=geo.x(i);let h=`<line class="aa-cross" x1="${X}" x2="${X}" y1="${P[0].yt}" y2="${P[3].yb}"/>`;
+  [[0,'ph','--c-ph'],[1,'ec','--c-ec'],[2,'at','--c-at'],[2,'wt','--c-wt'],[3,'rh','--c-rh']].forEach(([p,k,c])=>{if(r[k]!=null)h+=`<circle class="aa-dot" cx="${X}" cy="${P[p].y(r[k])}" r="4" style="fill:var(${c})"/>`});hv.innerHTML=h}else if(hv)hv.innerHTML='';
+ if(!r){rd.innerHTML=`<span class="aa-when">${fmtT(i,{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</span><span>keine Daten</span>`;return}
+ rd.innerHTML=`<span class="aa-when">${fmtT(i,{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</span>`+
+ `<span><em>pH</em>${nf(r.ph,2)}</span><span><em>EC</em>${nf(r.ec,2)} mS</span><span><em>Luft</em>${nf(r.at,1)} °C <em class="aa-x">(${nf(r.atn,1)}–${nf(r.atx,1)})</em></span><span><em>Wasser</em>${nf(r.wt,1)} °C</span><span><em>rF</em>${nf(r.rh,0)} %</span>`;
+}
+const pick=ev=>{if(!geo)return;const b=s.getBoundingClientRect(),px=ev.clientX-b.left;if(px<geo.L){show(null);return}
+ const i=Math.round(geo.i0+(px-geo.L)/(geo.W-geo.L-geo.R)*(I1-geo.i0));show(Math.max(geo.i0,Math.min(I1,i)))};
+s.addEventListener('pointermove',pick);s.addEventListener('pointerdown',pick);s.addEventListener('pointerleave',()=>show(null));
+document.getElementById('aa-seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;span=+b.dataset.h;
+ document.querySelectorAll('#aa-seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));try{localStorage.setItem('alinaSpan',span)}catch(_){}draw()});
+try{const v=+localStorage.getItem('alinaSpan');if(v){span=v;document.querySelectorAll('#aa-seg button').forEach(x=>x.setAttribute('aria-pressed',+x.dataset.h===v))}}catch(_){}
+const ro=new ResizeObserver(draw);ro.observe(fig);
+
+/* Befunde */
+const avg=(a,b,k)=>{const v=rows.filter(r=>r.i>=a&&r.i<b&&r[k]!=null).map(r=>r[k]);return v.reduce((s,x)=>s+x,0)/v.length};
+const phv=op.map(r=>r.ph).filter(x=>x!=null),inb=phv.filter(v=>v>=5.5&&v<=6.5).length/phv.length;
+const ecR=mm('ec'),rhR=mm('rhx');
+const F=[
+ [nf(inb*100,0),'%','pH im Zielbereich',`Mittelwert ${nf(phv.reduce((a,b)=>a+b,0)/phv.length,2)}, Spanne ${nf(Math.min(...phv),2)}–${nf(Math.max(...phv),2)}. Die Dosierung hält den pH zuverlässig.`],
+ [D.ev.length,'×','EC-Sprünge',`EC fällt sprunghaft, während der pH steigt. Das passt zu Wassernachfüllungen <span class="aa-m">(abgeleitet, nicht protokolliert)</span>. Danach dosiert der NIDO die EC in etwa 12 h zurück auf rund 1,5 mS/cm.`],
+ [nf(avg(OP,240,'at')-avg(700,I1+1,'at'),1),'K','kühler als Ende Oktober',`Luft im Mittel ${nf(avg(OP,240,'at'),1)} → ${nf(avg(700,I1+1,'at'),1)} °C, Wasser ${nf(avg(OP,240,'wt'),1)} → ${nf(avg(700,I1+1,'wt'),1)} °C. Dazu ${D.vents} Kälteeinbrüche um mindestens 3 K, der tiefste auf ${nf(minAir,1)} °C.`],
+ [nf(avg(480,700,'rh'),0),'%','Luftfeuchte Mitte November',`Von ${nf(avg(OP,240,'rh'),0)} % Ende Oktober auf ${nf(avg(480,700,'rh'),0)} % gestiegen, einzelne Spitzen bis ${nf(rhR[1],0)} %. Zuletzt wieder ${nf(avg(700,I1+1,'rh'),0)} %.`]];
+document.getElementById('aa-finds').innerHTML=F.map(f=>`<div class="aa-find"><div class="aa-n">${f[0]}<small>${f[1]}</small></div><h3>${f[2]}</h3><p>${f[3]}</p></div>`).join('');
+
+/* Tagesprofil */
+const ps=document.getElementById('aa-ps'),pf=document.getElementById('aa-prof');
+function drawP(){const W=pf.clientWidth,Hh=pf.clientHeight,L=34,R=8,t=10,b=26,x=h=>L+h/23*(W-L-R),y=v=>Hh-b-(v/25)*(Hh-t-b);let g='';
+ [0,5,10,15,20,25].forEach(v=>g+=`<line class="aa-g" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`);
+ [0,6,12,18,23].forEach(h=>g+=`<text x="${x(h)}" y="${Hh-8}" text-anchor="${h===0?'start':h===23?'end':'middle'}">${h} Uhr</text>`);
+ g+=D.prof.map((p,h)=>`<line x1="${x(h)}" x2="${x(h)}" y1="${y(p[0])}" y2="${y(p[1])}" stroke="var(--c-atb)" stroke-width="2"/>`).join('');
+ g+=`<path class="aa-l aa-l-at" stroke-width="2" d="M${D.prof.map((p,h)=>x(h).toFixed(1)+','+y(p[0]).toFixed(1)).join('L')}"/>`;
+ g+=D.prof.map((p,h)=>`<circle cx="${x(h)}" cy="${y(p[1])}" r="${p[1]<12?5:3.5}" style="fill:${p[1]<12?'var(--acc)':'var(--c-atb)'}"/>`).join('');
+ const lo=D.prof.reduce((a,p,h)=>p[1]<D.prof[a][1]?h:a,0);g+=`<text x="${x(lo)}" y="${y(D.prof[lo][1])+18}" text-anchor="middle" style="fill:var(--ink)">${nf(D.prof[lo][1],1)} °C</text>`;
+ ps.innerHTML=g}
+const ro2=new ResizeObserver(drawP);ro2.observe(pf);
+
+/* Ereignistabelle */
+const E=[...D.ev.map(e=>({i:e.i,t:e.t,k:'EC-Sprung',c:'var(--acc)',d:`EC ${nf(e.a,2)} → ${nf(e.b,2)} · pH ${nf(e.pa,2)} → ${nf(e.pb,2)}`})),
+ ...D.gaps.filter(g=>g.h>1).map(g=>({i:g.a,t:g.t,k:g.a<OP?'Datenlücke (Inbetriebnahme)':'Datenlücke',c:'var(--grid)',d:g.h+' h ohne Messwerte'}))].sort((a,b)=>a.i-b.i);
+document.getElementById('aa-evt').innerHTML=E.map(e=>`<tr><td class="aa-t">${esc(e.t)}</td><td><span class="aa-tag" style="background:${e.c}"></span>${esc(e.k)}</td><td class="aa-num">${esc(e.d)}</td></tr>`).join('');
+document.getElementById('aa-method').textContent=`Methode: ${D.rows.length} Stundenwerte, gemittelt aus den Einzelmessungen der NIDO-API (Doppelte entfernt). Sensor-Nullwerte und Werte während Geräteausfällen wurden verworfen, ebenso pH-Werte außerhalb von 5,0–7,5 während der Befüllung (19.–21.10.). Die Befunde beziehen sich auf den Betrieb ab 22.10. EC-Sprünge und Kälteeinbrüche werden automatisch erkannt. Ihre Ursache (Nachfüllen, Lüften) ist abgeleitet und nicht protokolliert. Es ist ein statischer Datenstand, keine Live-Verbindung.`;
+}).catch(e=>{document.getElementById('aa-stamp').textContent='Daten konnten nicht geladen werden.';console.error(e)});
+</script>
+</div>
+</body>
+</html>
