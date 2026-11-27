@@ -3,10 +3,16 @@
    Wird vom Raw-HTML-Element geladen. Änderungen hier wirken ohne WordPress-Schritt.
    - iframe-Höhe nach Inhalt
    - Seite bildschirmbreit, Lücke zum Titelband schließen
-   - Titelband des Themes: Basilikum-Foto, Titel weiß (unabhängig vom Titeltext) */
+   - Titelband des Themes: Basilikum-Foto, Titel weiß (unabhängig vom Titeltext)
+   - Foto halbtransparent über dunklem Grund (FOTO_DECKKRAFT, GRUND)
+   - Logo ohne weißes Feld: helle Fassung über dem Bild, Originalfarben sonst */
 (function () {
   var BASE = 'https://podmirseg.github.io/alina-alma/';
   var IMG = BASE + 'assets/header-basilikum-gross.jpg';
+  var FOTO_DECKKRAFT = 0.65;            /* 1 = Foto voll deckend, kleiner = transparenter */
+  var GRUND = '#171234';                /* Fläche hinter dem Foto (vfi Blau-Lavendel 5) */
+  var LOGO_HELL = BASE + 'assets/logo-vfi-hell.png';               /* weiß + Magenta, transparent */
+  var LOGO_TRANSPARENT = BASE + 'assets/logo-vfi-transparent.png'; /* Originalfarben, transparent */
   var wrap = document.getElementById('alina-alma-wrap');
   var frame = document.getElementById('alina-alma-frame');
   if (!wrap || !frame) return;
@@ -68,11 +74,32 @@
     for (var i = 0; i < t.length; i++) { t[i].classList.remove('grve-text-dark', 'grve-text-black'); t[i].classList.add('grve-text-white'); }
   }
 
+  /* Logo der Menüleiste: Fassungen mit transparentem Hintergrund einsetzen.
+     Impeka gibt je Zustand ein Bild aus (grve-default, grve-light, grve-dark, grve-sticky);
+     nur die helle Fassung (über dem Bild) bekommt weiße Buchstaben. */
+  function fixLogo() {
+    try {
+      var imgs = document.querySelectorAll('.grve-logo img');
+      for (var i = 0; i < imgs.length; i++) {
+        var im = imgs[i];
+        var src = im.classList.contains('grve-light') ? LOGO_HELL : LOGO_TRANSPARENT;
+        if (im.getAttribute('src') === src) continue;
+        im.removeAttribute('srcset');
+        im.removeAttribute('sizes');
+        im.removeAttribute('data-srcset');
+        im.setAttribute('src', src);
+        im.style.setProperty('background', 'transparent', 'important');
+        im.style.setProperty('object-fit', 'contain');
+      }
+    } catch (e) {}
+  }
+
   var resized = false;
   function fix() {
     /* Impeka: Titelband = #grve-feature-section mit .grve-bg-image; sonst geometrisch suchen */
     var section = document.getElementById('grve-feature-section');
     journalLook(section);
+    fixLogo();
     if (!resized) { resized = true; window.dispatchEvent(new Event('resize')); }
     var banner = section && section.querySelector('.grve-bg-image');
     if (!banner) banner = findBanner();
@@ -80,6 +107,11 @@
     banner.style.setProperty('background-image', 'url("' + IMG + '")', 'important');
     banner.style.setProperty('background-size', 'cover', 'important');
     banner.style.setProperty('background-position', 'center 35%', 'important');
+    /* Foto transparenter: Deckkraft senken, dunkle Fläche dahinter */
+    banner.style.setProperty('opacity', String(FOTO_DECKKRAFT), 'important');
+    var ground = (section && section.querySelector('.grve-background-wrapper')) || banner.parentElement;
+    if (ground) ground.style.setProperty('background-color', GRUND, 'important');
+    if (section) section.style.setProperty('background-color', GRUND, 'important');
     /* Titel weiß: nächster Vorfahr, der einen Titel enthält */
     var scope = section || banner;
     while (scope && scope !== document.body && !scope.querySelector('h1, h2, .grve-title')) scope = scope.parentElement;
